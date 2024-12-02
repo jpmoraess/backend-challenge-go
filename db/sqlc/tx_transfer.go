@@ -20,6 +20,8 @@ type TransferTxResult struct {
 	ToEntry    Entry    `json:"to_entry"`
 }
 
+// TransferTx performs a money transfer from one wallet to the other
+// It creates the transfer, add wallet entries, and update wallets balance within a database transaction
 func (s *SQLStore) TransferTx(ctx context.Context, arg TransferTxParam) (result TransferTxResult, err error) {
 	err = s.execTx(ctx, func(q *Queries) error {
 		result.Transfer, err = q.CreateTransfer(ctx, CreateTransferParams{

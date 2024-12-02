@@ -1,6 +1,6 @@
 -- name: CreateWallet :one
-INSERT INTO wallets (type, full_name, document, email, password)
-VALUES ($1, $2, $3, $4, $5)
+INSERT INTO wallets (type, full_name, document, email, password, balance)
+VALUES ($1, $2, $3, $4, $5, $6)
 RETURNING *;
 
 -- name: GetWallet :one

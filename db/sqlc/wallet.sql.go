@@ -38,8 +38,8 @@ func (q *Queries) AddBalanceToWallet(ctx context.Context, arg AddBalanceToWallet
 }
 
 const createWallet = `-- name: CreateWallet :one
-INSERT INTO wallets (type, full_name, document, email, password)
-VALUES ($1, $2, $3, $4, $5)
+INSERT INTO wallets (type, full_name, document, email, password, balance)
+VALUES ($1, $2, $3, $4, $5, $6)
 RETURNING id, type, full_name, document, email, password, balance, created_at
 `
 
@@ -49,6 +49,7 @@ type CreateWalletParams struct {
 	Document string `json:"document"`
 	Email    string `json:"email"`
 	Password string `json:"password"`
+	Balance  int64  `json:"balance"`
 }
 
 func (q *Queries) CreateWallet(ctx context.Context, arg CreateWalletParams) (Wallet, error) {
@@ -58,6 +59,7 @@ func (q *Queries) CreateWallet(ctx context.Context, arg CreateWalletParams) (Wal
 		arg.Document,
 		arg.Email,
 		arg.Password,
+		arg.Balance,
 	)
 	var i Wallet
 	err := row.Scan(
