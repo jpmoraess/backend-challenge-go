@@ -5,7 +5,7 @@ CREATE TABLE "wallets" (
                            "document" varchar UNIQUE NOT NULL,
                            "email" varchar UNIQUE NOT NULL,
                            "password" varchar NOT NULL,
-                           "balance" bigint NOT NULL,
+                           "balance" bigint NOT NULL DEFAULT 0,
                            "created_at" timestamptz NOT NULL DEFAULT 'now()'
 );
 

@@ -6,4 +6,7 @@
 
 **Run:** migrate create -ext- sql -dir db/migration -seq init_schema
 
-**
+---
+**SQLC**
+
+**Run:** sqlc generate
