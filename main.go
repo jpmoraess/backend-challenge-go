@@ -54,9 +54,9 @@ func main() {
 
 	err = createWallet.Execute(ctx, &usecase.CreateWalletInput{
 		WalletType: "USER",
-		FullName:   "John Wick",
-		Document:   "3232302032",
-		Email:      "john_wick@mail.com",
+		FullName:   "John Travolta",
+		Document:   "54545454",
+		Email:      "john_travolta@mail.com",
 		Password:   "password",
 	})
 	if err != nil {

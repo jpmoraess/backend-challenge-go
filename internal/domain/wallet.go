@@ -6,6 +6,7 @@ import (
 )
 
 type Wallet struct {
+	id         int64
 	walletType string
 	fullName   string
 	document   string
@@ -35,6 +36,23 @@ func NewWallet(walletType string, fullName string, document string, email string
 	return
 }
 
+func RestoreWallet(id int64, walletType string, fullName string, document string, email string, password string, balance int64) (w *Wallet, err error) {
+	w = &Wallet{
+		id:         id,
+		walletType: walletType,
+		fullName:   fullName,
+		document:   document,
+		email:      email,
+		password:   password,
+		balance:    balance,
+	}
+	if err = w.validate(); err != nil {
+		return
+	}
+
+	return
+}
+
 func (w *Wallet) validate() error {
 	if len(w.fullName) == 0 {
 		return errors.New("full name is required")
@@ -49,6 +67,10 @@ func (w *Wallet) validate() error {
 		return errors.New("password is required")
 	}
 	return nil
+}
+
+func (w *Wallet) ID() int64 {
+	return w.id
 }
 
 func (w *Wallet) WalletType() string {
